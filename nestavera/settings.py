@@ -158,9 +158,7 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://\w+\.ddsio\.com$",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
