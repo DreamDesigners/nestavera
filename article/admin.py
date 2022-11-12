@@ -8,7 +8,7 @@ class ArticleAdminForm(forms.ModelForm):
     body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Article
-        fields = ["category", "title", "slug", "short_body", "body", "is_featured", "is_active"]
+        fields = ["cover", "category", "title", "slug", "short_body", "body", "tags", "is_featured", "is_active"]
 
 class ArticleAdmin(admin.ModelAdmin):
     form = ArticleAdminForm
@@ -17,5 +17,6 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ["is_featured", "is_active"]
     search_fields = ["title", "short_body", "body"]
     prepopulated_fields = {"slug": ("title",),}
+    save_as = True
 
 admin.site.register(Article, ArticleAdmin)

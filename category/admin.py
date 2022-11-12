@@ -1,5 +1,5 @@
 from django.contrib import admin
-from category.models import Category
+from category.models import Category, Tag
 
 
 admin.site.site_header = "Nestavera"
@@ -19,3 +19,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag)
