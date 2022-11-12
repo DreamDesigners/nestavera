@@ -51,9 +51,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -158,12 +158,8 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://werkbiz.com",
-    'http://nestavera.ddsio.com',
-    'https://nestavera.ddsio.com',
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.ddsio\.com$",
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
