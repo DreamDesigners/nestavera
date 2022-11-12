@@ -162,6 +162,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://werkbiz.com",
+    'http://nestavera.ddsio.com',
+    'http://api-nestavera.ddsio.com'
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
