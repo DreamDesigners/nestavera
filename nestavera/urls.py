@@ -10,7 +10,7 @@ urlpatterns = [
     path('categories/', CategoriesListView.as_view(), name='categories-list'),
     path('tags/', TagsListView.as_view(), name='tags-list'),
     path('articles/', ArticlesListView.as_view(), name='articles-list'),
-    path('articles/<slug:category>/', ArticlesListView.as_view(), name='articles-list'),
+    path('articles/category/<slug:category>/', ArticlesListView.as_view(), name='articles-list'),
     path('articles/<int:pk>/', ArticleDetailView.as_view(), name='article-detail')
 ]
 
