@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "article",
     "category",
+    "contact",
+    "career",
     "ckeditor"
 ]
 
