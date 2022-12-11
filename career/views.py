@@ -16,6 +16,6 @@ class JobCategoryListView(generics.ListAPIView):
 
 
 class JobLocationListView(generics.ListAPIView):
-  queryset = Job.objects.all()
+  queryset = JobLocation.objects.all()
   serializer_class = JobLocationSerializer
   filter_backends = (DjangoFilterBackend,)
