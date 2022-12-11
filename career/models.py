@@ -39,3 +39,15 @@ class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
         fields = '__all__'
+
+
+class JobLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobLocation
+        fields = '__all__'
+
+
+class JobCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobCategory
+        fields = '__all__'
