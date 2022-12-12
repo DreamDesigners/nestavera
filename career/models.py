@@ -51,3 +51,20 @@ class JobCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = JobCategory
         fields = '__all__'
+
+
+class JobApplication(models.Model):
+  job    = models.ForeignKey(Job, on_delete=models.CASCADE)
+  name   = models.CharField(max_length=255)
+  email  = models.EmailField()
+  phone  = models.CharField(max_length=12)
+  resume = models.FileField(upload_to='resumes/')
+
+  def __str__(self):
+    return str(self.name)
+
+
+class JobApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobApplication
+        fields = '__all__'

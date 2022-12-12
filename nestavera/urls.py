@@ -3,7 +3,7 @@ from django.urls import path
 from category.views import CategoriesListView, TagsListView
 from article.views import ArticlesListView, ArticleDetailView
 from contact.views import ContactsCreateView
-from career.views import JobsListView, JobCategoryListView, JobLocationListView
+from career.views import JobsListView, JobCategoryListView, JobLocationListView, JobApplicationCreateView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -18,6 +18,7 @@ urlpatterns = [
     path('careers-categories/', JobCategoryListView.as_view(), name='jobs-categories'),
     path('careers-locations/', JobLocationListView.as_view(), name='jobs-locations'),
     path('contacts/', ContactsCreateView.as_view(), name='contacts'),
+    path('job_application/', JobApplicationCreateView.as_view(), name='job_application'),
 ]
 
 
