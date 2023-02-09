@@ -4,7 +4,7 @@ from url_filter.integrations.drf import DjangoFilterBackend
 
 
 class CategoriesListView(generics.ListAPIView):
-  queryset = Category.objects.all()
+  queryset = Category.objects.filter(parent__isnull=False)
   serializer_class = CategorySerializer
   filter_backends = (DjangoFilterBackend,)
 
