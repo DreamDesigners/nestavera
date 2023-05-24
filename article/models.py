@@ -30,6 +30,7 @@ class Article(models.Model):
   slug            = models.SlugField(max_length=500, unique=True)
   short_body      = models.TextField(max_length=500)
   body            = RichTextField()
+  external_link   = models.URLField(max_length=500, blank=True, null=True)
 
   is_featured   = models.BooleanField(default=False)
   is_active     = models.BooleanField(default=True)
@@ -49,7 +50,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
     cover = serializers.SerializerMethodField()
     class Meta:
         model = Article
-        fields = ['id','title', 'short_body', 'category', 'category_display', 'created_at', 'updated_at', 'cover']
+        fields = ['id','title', 'short_body', 'external_link', 'category', 'category_display', 'created_at', 'updated_at', 'cover']
 
     def get_category_display(self, obj):
         return obj.category.title

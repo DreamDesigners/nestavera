@@ -8,7 +8,7 @@ class ArticleAdminForm(forms.ModelForm):
     body = forms.CharField(widget=CKEditorWidget())
     class Meta:
         model = Article
-        fields = ["cover", "category", "title", "slug", "short_body", "body", "tags", "is_featured", "is_active"]
+        fields = ["cover", "category", "title", "slug", "short_body", "external_link", "body", "tags", "is_featured", "is_active"]
 
 class ArticleAdmin(admin.ModelAdmin):
     form = ArticleAdminForm
