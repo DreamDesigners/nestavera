@@ -8,6 +8,7 @@ import uuid
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.core.mail import send_mail
+from django.core.exceptions import ValidationError
 
 
 def get_filename_ext(filepath):
@@ -28,8 +29,8 @@ class Article(models.Model):
   category        = models.ForeignKey(Category, on_delete=models.CASCADE)
   title           = models.CharField(max_length=500)
   slug            = models.SlugField(max_length=500, unique=True)
-  short_body      = models.TextField(max_length=500)
-  body            = RichTextField()
+  short_body      = models.TextField(max_length=500, blank=True, null=True)
+  body            = RichTextField(null=True, blank=True)
   external_link   = models.URLField(max_length=500, blank=True, null=True)
 
   is_featured   = models.BooleanField(default=False)
@@ -40,9 +41,19 @@ class Article(models.Model):
 
   def __str__(self):
     return self.title
+  
+  def clean(self):
+    if not self.external_link:
+      if not self.body or not self.short_body:
+        raise ValidationError("Either external link or body is required")
+    
+  def save(self, *args, **kwargs):
+    self.full_clean()
+    super(Article, self).save(*args, **kwargs)
 
-class Meta:
-    ordering = ['-updated_at']
+  
+  class Meta:
+      ordering = ['-updated_at']
 
 
 class ArticleListSerializer(serializers.ModelSerializer):
