@@ -7,6 +7,7 @@ class CategoriesListView(generics.ListAPIView):
   queryset = Category.objects.filter(parent__isnull=False)
   serializer_class = CategorySerializer
   filter_backends = (DjangoFilterBackend,)
+  filter_fields = '__all__'
 
 
 class TagsListView(generics.ListAPIView):
@@ -14,3 +15,4 @@ class TagsListView(generics.ListAPIView):
   serializer_class = TagsSerializer
   pagination_class = None
   filter_backends = (DjangoFilterBackend,)
+  filter_fields = '__all__'
