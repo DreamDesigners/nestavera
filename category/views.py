@@ -10,9 +10,11 @@ class CategoriesListView(generics.ListAPIView):
   filter_fields = '__all__'
 
   def get_queryset(self):
-    if self.kwargs.get("category"):
-      return Category.objects.filter(is_active=True, parent__slug=self.kwargs.get("category"))
-    return Category.objects.filter(is_active=True)
+    # get category from query params
+    category = self.request.GET.get('parent_category', None)
+    if category:
+      return Category.objects.filter(parent__slug=category)
+    return Category.objects.filter(parent__isnull=False)
 
 
 class TagsListView(generics.ListAPIView):
