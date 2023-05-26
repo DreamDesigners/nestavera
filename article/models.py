@@ -50,7 +50,10 @@ class ArticleListSerializer(serializers.ModelSerializer):
     cover = serializers.SerializerMethodField()
     class Meta:
         model = Article
-        fields = ['id','title', 'short_body', 'external_link', 'category', 'category_display', 'created_at', 'updated_at', 'cover']
+        fields = [
+            'id','title', 'short_body', 'external_link', 'category', 'category_display', 'created_at', 'updated_at', 'cover',
+            'tags'
+            ]
 
     def get_category_display(self, obj):
         return obj.category.title
