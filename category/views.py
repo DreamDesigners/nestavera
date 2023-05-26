@@ -9,6 +9,11 @@ class CategoriesListView(generics.ListAPIView):
   filter_backends = (DjangoFilterBackend,)
   filter_fields = '__all__'
 
+  def get_queryset(self):
+    if self.kwargs.get("category"):
+      return Category.objects.filter(is_active=True, parent__slug=self.kwargs.get("category"))
+    return Category.objects.filter(is_active=True)
+
 
 class TagsListView(generics.ListAPIView):
   queryset = Tag.objects.filter(is_active=True)
