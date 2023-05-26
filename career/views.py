@@ -11,6 +11,7 @@ class JobsListView(generics.ListAPIView):
   queryset = Job.objects.all()
   serializer_class = JobSerializer
   filter_backends = (DjangoFilterBackend,)
+  filter_fields = '__all__'
 
 
 class JobCategoryListView(generics.ListAPIView):
