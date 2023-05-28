@@ -26,7 +26,7 @@ def upload_file_path(instance, filename):
 
 class Article(models.Model):
   cover           = models.ImageField(upload_to=upload_file_path, blank=True, null=True)
-  category        = models.ForeignKey(Category, on_delete=models.CASCADE)
+  category        = models.ForeignKey(Category, on_delete=models.CASCADE, limit_choices_to={ "is_active": True, "parent__isnull": False })
   title           = models.CharField(max_length=500)
   slug            = models.SlugField(max_length=500, unique=True)
   short_body      = models.TextField(max_length=500, blank=True, null=True)
