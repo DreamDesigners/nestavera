@@ -1,5 +1,9 @@
 from django.db import models
 from rest_framework import serializers
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 class JobLocation(models.Model):
@@ -62,6 +66,26 @@ class JobApplication(models.Model):
 
   def __str__(self):
     return str(self.name)
+
+
+# send email to admin when a new job application is submitted
+@receiver(post_save, sender=JobApplication)
+def send_job_application_email(sender, instance, created, **kwargs):
+    if created:
+        subject = "New Job Application"
+        message = "A new job application has been submitted."
+        # include details of the job application in the email
+        message += "\n\nJob: " + instance.job.title
+        message += "\nName: " + instance.name
+        message += "\nEmail: " + instance.email
+        message += "\nPhone: " + instance.phone
+
+        recipient_list = ['contact@nestavera.com']
+        # recipient_list = ['harsh@ddsio.com']
+        send_mail(subject, message, settings.EMAIL_HOST_USER, recipient_list, fail_silently=False)
+
+
+
 
 
 class JobApplicationSerializer(serializers.ModelSerializer):

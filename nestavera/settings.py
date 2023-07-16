@@ -173,3 +173,11 @@ REST_FRAMEWORK = {
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.NamespaceVersioning",
     "PAGE_SIZE": 10,
 }
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "notifyddsio@gmail.com"
+EMAIL_HOST_PASSWORD = "dyhzpnbspzymwwue"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
