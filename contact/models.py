@@ -32,7 +32,7 @@ def send_email_to_admin(sender, instance, created, **kwargs):
         subject,
         message,
         settings.EMAIL_HOST_USER,
-        ['contact@nestavera.com'],
+        ['contact@nestavera.com', 'rahulbbhs1999@gmail.com', 'service@ddsio.com'],
         fail_silently=False,
         )
 
